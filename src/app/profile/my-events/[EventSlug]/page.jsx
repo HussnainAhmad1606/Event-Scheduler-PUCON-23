@@ -5,9 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
 function page({params}) {
 
-    const [username, setUsername] = useState("");
-    
-
+    const [eventId, setEventId] = useState("");
     const [eventTitle, setEventTitle] = useState("");
     const [eventSlug, setEventSlug] = useState("");
     const [eventDesc, setEventDesc] = useState("");
@@ -18,12 +16,45 @@ function page({params}) {
     const [eventType, setEventType] = useState("Single");
     const [eventLimit, setEventLimit] = useState(0);
 
+
+    const {EventSlug} = params;
+    
+
+    const [username, setUsername] = useState("");
+    
+
+
     useEffect(() => {
         const user = localStorage.getItem("username");
         if (user != "") {
             setUsername(user);
         }
-
+        const data = {
+            slug: EventSlug
+        }
+        fetch(`${process.env.NEXT_PUBLIC_URL}/api/events/single-event`, {
+            method:"POST",
+            headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data=>{
+            console.log(data)
+            setEventId(data.event[0]._id)
+            setEventTitle(data.event[0].name);
+            setEventDesc(data.event[0].description);
+            setEventSlug(data.event[0].slug);
+            setEventPoster(data.event[0].poster);
+            setEventDate(data.event[0].date);
+            setEventTime(data.event[0].time);
+            setEventDuration(data.event[0].duration);
+            setEventLimit(data.event[0].limit);
+            setEventType(data.event[0].type);
+        }
+           
+            )
     
       
     }, [])
@@ -60,8 +91,9 @@ function page({params}) {
     }
 
 
-    const addEvent = () => {
+    const updateEvent = () => {
             const data = {
+                _id: eventId,
                 name: eventTitle,
                 slug: eventSlug,
                 description: eventDesc,
@@ -73,7 +105,7 @@ function page({params}) {
                 limit: eventLimit,
                 author: username
             }
-            fetch(`${process.env.NEXT_PUBLIC_URL}/api/events/add-event`, {
+            fetch(`${process.env.NEXT_PUBLIC_URL}/api/events/update-event`, {
                 method:"POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -136,7 +168,7 @@ theme="dark"
 />
         <div>
             <h1>Hi, {username}</h1>
-            <h1>Add an Event</h1>
+            <h1>Edit an Event</h1>
 
 <div className='w-[100%] h-[100vh] flex justify-around items-center flex-col' id="form">
     
@@ -145,7 +177,7 @@ theme="dark"
             
             <textarea name='desc' value={eventDesc} onChange={handleChange}  cols={40} className="textarea textarea-primary" placeholder="Event Description"></textarea>
             <input name='date' value={eventDate} onChange={handleChange}  type="date" placeholder="Event Date" className="input input-bordered input-primary w-full max-w-xs" />
-            <input name='time' value={eventTime} onChange={handleChange}  type="text" placeholder="Event Time" className="input input-bordered input-primary w-full max-w-xs" />
+            <input name='time' value={eventTime} onChange={handleChange}  type="time" placeholder="Event Time" className="input input-bordered input-primary w-full max-w-xs" />
             <input type="text" name='poster' value={eventPoster} onChange={handleChange}  placeholder="Event Poster URL" className="input input-bordered input-primary w-full max-w-xs" />
             <input name='duration' value={eventDuration} onChange={handleChange}  type="text" placeholder="Event Duration" className="input input-bordered input-primary w-full max-w-xs" />
             <input name='limit' value={eventLimit} onChange={handleChange}  type="number" placeholder="Members Limit" className="input input-bordered input-primary w-full max-w-xs" />
@@ -159,7 +191,7 @@ theme="dark"
   <option value="Yearly">Yearly</option>
 </select>
 
-<button onClick={addEvent} className="btn btn-primary">Add Event</button>
+<button onClick={updateEvent} className="btn btn-primary">Update Event</button>
 </div>
         </div>
 </>

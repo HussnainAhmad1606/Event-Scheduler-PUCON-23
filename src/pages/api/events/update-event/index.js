@@ -14,13 +14,14 @@ const handler = async (request, response) => {
         "poster": request.body.poster,
         "duration": request.body.duration,
         "eventType": request.body.type,
-        "limit": request.body.limit
+        "limit": request.body.limit,
+        "author": request.body.author
     
     } 
      }
     );
 
-    return response.status(200).json({"message": "Updated successfully"})
+    return response.status(200).json({type: "success", message: "Updated successfully"})
     
 }
 

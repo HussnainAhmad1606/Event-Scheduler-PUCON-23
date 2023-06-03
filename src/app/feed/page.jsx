@@ -74,7 +74,6 @@ function page() {
     <>
       <div>
         <Navbar />
-        <h1>Hi, {username}</h1>
 
 
         <div id='filterBox' className='flex  items-center justify-center' >
@@ -102,8 +101,22 @@ function page() {
 
 
 
+<center>
+<h1 className='my-5 text-2xl'>Events</h1>
+<div className='flex justify-center mt-5'>
 
-        <div className='grid gap-10 ml-7 grid-cols-3 '>
+<button onClick={() => {
+  router.push("/feed/add-event")
+}} className="btn btn-active btn-primary">Add New Event</button>
+</div>
+</center>
+        <div style={{
+          display: "grid",
+          gridGap: "1rem",
+          gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))",
+          justifyContent: "center",
+          alignItems: "center"
+        }} className='my-5 ml-[30px]'>
 
           {
             events.map((event) => {
@@ -114,12 +127,7 @@ function page() {
 
 
         </div>
-        <div className='flex justify-center mt-5'>
-
-          <button onClick={() => {
-            router.push("/feed/add-event")
-          }} className="btn btn-active btn-primary">Add New Event</button>
-        </div>
+       
       </div >
     </>
   )
