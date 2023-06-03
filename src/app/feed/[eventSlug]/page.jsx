@@ -12,6 +12,40 @@ function page({params}) {
     const [isReady, setIsReady] = useState(false);
     const [members, setMembers] = useState(["p"]);
     const [buttonText, setButtonText] = useState("Join Event");
+    
+    const addWishlist = () => {
+        console.log("DONE")
+        const data = {
+            name: event[0].name,
+            slug: event[0].slug,
+            description: event[0].description,   
+            poster: event[0].poster,
+            username: username
+        }
+        fetch(`${process.env.NEXT_PUBLIC_URL}/api/events/add-to-wishlist`, {
+            method:"POST",
+            headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data=>{
+            console.log(data);
+            toast.success(data.message, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                });
+        })
+        
+    }
+   
 
     const joinEvent = () => {
         const data = {
@@ -101,7 +135,7 @@ theme="dark"
                     <p className='text-justify  px-8' >{isReady && event[0].description}</p>
                     <div className='flex'>
                     <button disabled={members.includes(username)} onClick={joinEvent} className="btn btn-primary mt-10 mr-10 text-center">{buttonText}</button>
-                    <button className="btn btn-primary mt-10  text-center"><ion-icon name="heart-outline"></ion-icon>Add to wish list</button>
+                    <button  onClick={addWishlist} className="btn btn-primary mt-10  text-center"><ion-icon name="heart-outline"></ion-icon>Add to wish list</button>
                     </div>
 
 

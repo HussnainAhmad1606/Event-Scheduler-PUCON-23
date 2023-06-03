@@ -119,7 +119,7 @@ function page() {
 
           {
             events.map((event) => {
-              return <Card key={event._id} title={event.name} link={event.slug} description={event.description} />
+              return <Card poster={event.poster} key={event._id} title={event.name} link={event.slug} description={event.description} />
             })
           }
 
