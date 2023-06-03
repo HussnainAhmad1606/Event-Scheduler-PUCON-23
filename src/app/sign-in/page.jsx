@@ -1,7 +1,11 @@
+"use client"
 import React from 'react'
 import "../../css/sign-in.css"
 import Link from "next/link"
+import { useUserStore } from '../../store/store';
 function page() {
+
+    const username = useUserStore(state => state.username)
   return (
     <div className="wrapper" >
         <span className="icon-close">
@@ -14,6 +18,7 @@ function page() {
         <div className="form-box login">
         
             <h2>Login</h2>
+            <h2>{username}</h2>
         <form action="#">
             <div className="input-box">
                 <span className="icon"><ion-icon name="mail-open"></ion-icon></span>
