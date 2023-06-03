@@ -1,4 +1,5 @@
 "use client"
+import Navbar from '@/components/Navbar'
 import React, { useEffect, useState } from 'react'
 import Card from "../../components/Card";
 import { useUserStore } from '../../store/store';
@@ -70,8 +71,9 @@ function page() {
 
   }
   return (
-
     <>
+
+<Navbar/>
       <div>
 
 

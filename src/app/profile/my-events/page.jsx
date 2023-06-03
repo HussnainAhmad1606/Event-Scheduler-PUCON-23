@@ -4,6 +4,7 @@ import EventDetail from "../../../components/EventDetail";
 import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
 import Card from '@/components/UserCard';
+import Navbar from '@/components/Navbar'
 function page({params}) {
 
     const {eventSlug} = params;
@@ -23,7 +24,7 @@ function page({params}) {
         const data = {
             author: user
         }
-
+        
         fetch(`${process.env.NEXT_PUBLIC_URL}/api/events/event-by-username`, {
             method:"POST",
             headers: {
@@ -36,15 +37,17 @@ function page({params}) {
             console.log(data)
             setEvents(data.events)
         })
-           
         
-    
-      
+        
+        
+        
     }, [])
     
-
-
+    
+    
     return (
+        <>
+            <Navbar/>
         <div>
            
         {
@@ -53,6 +56,7 @@ function page({params}) {
             })
         }
         </div>
+                </>
     )
 }
 

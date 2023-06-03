@@ -155,6 +155,7 @@ function page({params}) {
 
     return (
         <>
+<Navbar/>
          <ToastContainer
 position="top-right"
 autoClose={5000}

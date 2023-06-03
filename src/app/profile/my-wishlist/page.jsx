@@ -1,4 +1,5 @@
 "use client"
+import Navbar from '@/components/Navbar'
 import React, { useState, useEffect } from 'react'
 import EventDetail from "../../../components/EventDetail";
 import { ToastContainer, toast } from 'react-toastify';
@@ -45,6 +46,8 @@ function page({params}) {
 
 
     return (
+<>
+<Navbar/>
         <div>
            
         {
@@ -53,6 +56,7 @@ function page({params}) {
             })
         }
         </div>
+        </>
     )
 }
 

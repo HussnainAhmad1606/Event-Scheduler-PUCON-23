@@ -3,11 +3,14 @@ import { Inter } from 'next/font/google'
 import styles from './page.module.css'
 import Link from "next/link"
 import EventDetail from "../components/EventDetail"
+import Navbar from '@/components/Navbar'
+
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (
     <>
+     <Navbar/>
     <div className='flex flex-col  md:flex-row '>
     <div className=' flex flex-col justify-center items-center '>
 
