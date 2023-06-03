@@ -1,4 +1,5 @@
 "use client"
+import Navbar from '@/components/Navbar';
 import React, { useState, useEffect } from 'react'
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -167,8 +168,10 @@ pauseOnHover
 theme="dark"
 />
         <div>
-            <h1>Hi, {username}</h1>
+           <div className='text-2xl flex justify-center items-center flex-col'>
+           <h1>Hi, {username}</h1>
             <h1>Edit an Event</h1>
+           </div>
 
 <div className='w-[100%] h-[100vh] flex justify-around items-center flex-col' id="form">
     

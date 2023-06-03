@@ -73,7 +73,6 @@ function page() {
 
     <>
       <div>
-        <Navbar />
 
 
         <div id='filterBox' className='flex  items-center justify-center' >

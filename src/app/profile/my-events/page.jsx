@@ -46,7 +46,6 @@ function page({params}) {
 
     return (
         <div>
-            <h1>Hi, {username}</h1>
            
         {
             events.map((event)=> {

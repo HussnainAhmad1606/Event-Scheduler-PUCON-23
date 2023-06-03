@@ -1,3 +1,4 @@
+"use client"
 import Link from 'next/link';
 import React, { useState, useEffect } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
@@ -52,20 +53,20 @@ theme="dark"
                     <ul style={{
                         zIndex: 1
                     }} tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                    <li><a>Home</a></li>
-                    <li><a>Feed</a></li>
-                    <li><a>About Us</a></li>
-                    <li><a>Contact Us</a></li>
+                     <li><Link href={"/"}>Home</Link></li>
+                    <li><Link href={"/feed"}>Feed</Link></li>
+                    <li><Link href={"/about"}>About Us</Link></li>
+                    <li><Link href={"/contact"}>Contact Us</Link></li>
                     </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl">Event Scheduler</a>
+                <Link href={"/"} className="btn btn-ghost normal-case text-xl">Event Scheduler</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
-                    <li><a>Home</a></li>
-                    <li><a>Feed</a></li>
-                    <li><a>About Us</a></li>
-                    <li><a>Contact Us</a></li>
+                    <li><Link href={"/"}>Home</Link></li>
+                    <li><Link href={"/feed"}>Feed</Link></li>
+                    <li><Link href={"/about"}>About Us</Link></li>
+                    <li><Link href={"/contact"}>Contact Us</Link></li>
                 </ul>
             </div>
             <div className="navbar-end">
