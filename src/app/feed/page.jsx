@@ -87,10 +87,16 @@ function page() {
           </select>
           <input type="text" name='search' value={searchQuery} onChange={changeFilterHandle} placeholder="Search Here" className="input input-bordered input-primary w-full max-w-xs ml-2" />
 
-          <div className="card-actions ml-2 justify-end">
-            <Link href={`/feed/search//${searchQuery}/${searchBy}`} className="btn btn-primary">Search</Link>
-          </div>
+<div className="card-actions ml-2 justify-end">
+  <Link href={`/feed/search//${searchQuery}/${searchBy}`} className="btn btn-primary">Search</Link>
+</div><em>
 
+
+
+
+  
+</em>
+       
 
         </div>
 
