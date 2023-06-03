@@ -6,9 +6,14 @@ function page({params}) {
     const {eventSlug} = params;
 
     const [event, setEvent] = useState("");
+    const [username, setUsername] = useState("");
     const [isReady, setIsReady] = useState(false);
 
     useEffect(() => {
+        const user = localStorage.getItem("username");
+        if (user != "") {
+            setUsername(user);
+        }
 
             const data = {
                 slug: eventSlug
@@ -36,11 +41,8 @@ function page({params}) {
 
 
     return (
-        <div 
-        // style={{
-        //     background: "linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80') no-repeat center center/cover"
-        // }}
-        >
+        <div>
+            <h1>Hi, {username}</h1>
             <div className='flex flex-col  md:flex-row '>
                 <div className=' flex flex-col justify-center items-center w-3/6 '>
 

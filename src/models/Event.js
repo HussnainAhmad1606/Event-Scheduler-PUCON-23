@@ -9,6 +9,8 @@ const eventSchema = new Schema({
   time: { type: String },
   poster: { type: String,},
   duration: { type: String },
+  type: { type: String },
+  author: { type: String },
   limit: Number,
   members: { type: [String]},
 }, { timestamps: true, versionKey: false });

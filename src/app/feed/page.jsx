@@ -4,15 +4,18 @@ import Card from "../../components/Card";
 import { useUserStore } from '../../store/store';
 import Filter from '../../components/Filter';
 import Navbar from'../../components/Navbar';
+import {useRouter} from "next/navigation"
+
 function page() {
 
   const [username, setUsername] = useState("")
   const [events, updateEvents] = useState([])
 
-  useEffect(() => {
+  const router = useRouter();
+  useEffect(()=> {
     var user = localStorage.getItem("username");
     if (user != "") {
-      setUsername(user)
+      setUsername(user);
     }
 
 
@@ -27,11 +30,13 @@ function page() {
   return (
 
     <>
-
-
 <Navbar/>
+    <button onClick={() => {
+      router.push("/feed/add-event")
+    }} className="btn btn-active btn-primary">Add New Event</button>
+  <h1>Hi, {username}</h1>
 
-      <h1>Hi, {username}</h1>
+
       <div className='flex ml-20 mb-5 items-center justify-center' >
 
         <Filter />
