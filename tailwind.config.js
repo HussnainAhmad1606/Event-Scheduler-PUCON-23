@@ -8,5 +8,8 @@ module.exports = {
     "./node_modules/flowbite/**/*.js"
   ],
   plugins: [require("daisyui")],
+  daisyui: {
+    themes: ["light", "dark", "cupcake"]
+  }
 
 };

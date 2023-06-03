@@ -3,11 +3,15 @@ import React, { useState } from 'react'
 import "../../css/sign-in.css"
 import Link from "next/link"
 import { useUserStore } from '../../store/store';
+import { useRouter } from "next/navigation"
 
 import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
+import { Router } from 'next/router';
 
 function page() {
+
+    const router = useRouter();
 
     const usernameFromStore = useUserStore(state => state.username)
 
@@ -61,6 +65,8 @@ function page() {
         })
 
 
+        localStorage.setItem( 'username', username );
+
     }
 
     const handleChange = (e) => {
@@ -95,6 +101,7 @@ theme="dark"
         
         <div className="form-box login">
             <h2>Login</h2>
+            <h2>{usernameFromStore}</h2>
             <div className="input-box">
                 <span className="icon"><ion-icon name="mail-open"></ion-icon></span>
                 <input type="text" value={username} name='username' onChange={handleChange} required/>

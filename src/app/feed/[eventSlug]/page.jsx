@@ -1,14 +1,47 @@
-import React from 'react'
-import EventDetail from "../../../components/EventDetail"
-function page() {
+"use client"
+import React, { useState, useEffect } from 'react'
+import EventDetail from "../../../components/EventDetail";
+function page({params}) {
+
+    const {eventSlug} = params;
+
+    const [event, setEvent] = useState("");
+    const [isReady, setIsReady] = useState(false);
+
+    useEffect(() => {
+
+            const data = {
+                slug: eventSlug
+            }
+            fetch(`${process.env.NEXT_PUBLIC_URL}/api/events/single-event`, {
+                method:"POST",
+                headers: {
+                    "Content-Type": "application/json"
+                  },
+                  body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data=>{
+                console.log(data)
+    
+            setEvent(data.event);
+            setIsReady(true);
+                 
+            })
+    
+    
+      
+    }, [])
+    
+
+
     return (
         <>
             <div className='flex flex-col  md:flex-row'>
                 <div className=' flex flex-col justify-center items-center w-3/6 '>
 
-                    <h1 className='text-center text-7xl font-sans' >PUCON'23</h1>
-                    <p className='text-justify  px-8' >Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos earum tenetur sequi dolorum, aperiam reprehenderit quidem facilis sint similique autem repellendus consequuntur, vitae culpa modi sapiente deleniti cumque, labore itaque amet doloribus optio eum distinctio saepe. Ratione, impedit animi! Eum non eveniet cum voluptatem nam nesciunt sunt perferendis architecto rem?
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos earum tenetur sequi dolorum, aperiam reprehenderit quidem facilis sint similique autem repellendus consequuntur, vitae culpa modi sapiente deleniti cumque, labore itaque amet doloribus optio eum distinctio saepe. Ratione, impedit animi! Eum non eveniet cum voluptatem nam nesciunt sunt perferendis architecto rem?</p>
+                    <h1 className='text-center text-7xl font-sans' >{isReady && event[0].name}</h1>
+                    <p className='text-justify  px-8' >{isReady && event[0].description}</p>
                         <button className="btn btn-primary mt-10  text-center">Join Event</button>
 
                     
@@ -22,9 +55,9 @@ function page() {
 
             </div>
             <div className='grid gap-10 m-10 grid-cols-3 '>
-                <EventDetail title="Time" data="12 Hours" />
-                <EventDetail title="Date" data="3-6-2023" />
-                <EventDetail title="Limit" data="10" />
+                <EventDetail title="Time" data={isReady && event[0].time} />
+                <EventDetail title="Date" data={isReady && event[0].date} />
+                <EventDetail title="Limit" data={isReady && event[0].limit} />
 
             </div>
         </>
