@@ -30,7 +30,7 @@ function Card({ title, data }) {
                 }
             </div>
             
-                <hr className='w-4/5 mt-5 block m-auto  '></hr>
+                <hr className='w-4/5 mt-5 block m-auto color- '></hr>
                 <div className="card-body flex justify-center">
                     <h2 className="card-title text-4xl block m-auto  ">{title}</h2>
                     <p className='text-center text-2xl '>{data}</p>

@@ -46,7 +46,10 @@ function page({params}) {
 
                     <h1 className='text-center text-7xl font-sans py-5' >{isReady && event[0].name}</h1>
                     <p className='text-justify  px-8' >{isReady && event[0].description}</p>
-                    <button className="btn btn-primary mt-10  text-center">Join Event</button>
+                    <div className='flex'>
+                    <button className="btn btn-primary mt-10 mr-10 text-center">Join Event</button>
+                    <button className="btn btn-primary mt-10  text-center"><ion-icon name="heart-outline"></ion-icon>Add to wish list</button>
+                    </div>
 
 
 
