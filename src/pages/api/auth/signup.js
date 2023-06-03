@@ -11,18 +11,18 @@ const handler = async (req, res) => {
         console.log(req.body)
         let user = new User({
             email: req.body.email,
-            username: req.body.email,
+            username: req.body.username,
             password: hashedPassword,
             isBlocked: req.body.isBlocked,
             isAdmin: req.body.isAdmin
         })
     
         await user.save();
-        return res.status(200).json({success: "user created successfully" })
+        return res.status(200).json({type: "success", message: "user created successfully" })
     }
     
     else {
-        return res.status(200).json({error: "ERROR" })
+        return res.status(200).json({type: "error", message: "ERROR" })
     }
 }
 
