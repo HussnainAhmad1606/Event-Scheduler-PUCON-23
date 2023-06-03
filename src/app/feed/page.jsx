@@ -88,7 +88,13 @@ function page() {
 
 <div className="card-actions ml-2 justify-end">
   <Link href={`/feed/search//${searchQuery}/${searchBy}`} className="btn btn-primary">Search</Link>
-</div>
+</div><em>
+
+
+
+
+  
+</em>
        
 
       </div>
